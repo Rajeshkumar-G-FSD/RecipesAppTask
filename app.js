@@ -10,9 +10,11 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/api', recipeRoutes);
+const URL = process.env.DB || "mongodb://localhost:27017";
+mongoose.connect(URL);
 
 // MongoDB Connection
-mongoose.connect('mongodb://127.0.0.1:27017/recipes', {
+mongoose.connect(URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 100000, // 30 seconds
